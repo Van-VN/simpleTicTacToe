@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .container {
+            width: 200px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: lightgray;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<article class="container">
+    <h2>Tic Tac Toe</h2>
+    <div id="display" style="margin-left: 10px;"></div>
+    <br>
+    <button onclick="changeX()">Click to change</button>
+</article>
+</body>
+</html>
+
+<script>
+    let arr = []
+    let turn = 0;
+    for (let index = 0; index < 5; index++) {
+        arr.push([0, 0, 0, 0, 0]);
+    }
+
+    function display() {
+        for (let j = 0; j < 5; j++) {
+            for (let k = 0; k < 5; k++) {
+                document.getElementById('display').innerHTML += arr[j][k] + '&nbsp;&nbsp;&nbsp;&nbsp;'
+            }
+            document.getElementById('display').innerHTML += '<br>';
+        }
+    }
+
+    display();
+
+    function changeX() {
+        let xAxis = +prompt("Nhập số hàng muốn thay đổi") - 1;
+        let yAxis = +prompt("Nhập số cột muốn thay đổi") - 1;
+        turn++;
+        if (turn % 2 !== 0) {
+            arr[xAxis][yAxis] = 'x';
+        } else {
+            arr[xAxis][yAxis] = 'o';
+        }
+        document.getElementById('display').innerHTML = "";
+        display();
+        for (let i = 0; i < 5; i++) {
+            for (let j = 0; j < 5; j++) {
+                if (arr[i][j] === 'x' && arr[i][j + 1] === 'x' && arr[i][j + 2] === 'x' ||
+                    arr[i][j] === 'x' && arr[i + 1][j] === 'x' && arr[i + 2][j] === 'x') {
+                    alert("Người chơi X thắng!");
+                } else if (arr[i][j] === 'o' && arr[i][j + 1] === 'o' && arr[i][j + 2] === 'o' ||
+                    arr[i][j] === 'o' && arr[i + 1][j] === 'o' && arr[i + 2][j] === 'o') {
+                    alert("Người chơi O thắng!");
+                }
+            }
+        }
+    }
+
+
+</script>
